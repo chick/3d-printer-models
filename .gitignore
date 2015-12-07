@@ -1,3 +1,6 @@
+# stl (printer ready binaries)
+*.stl
+
 # Object files
 *.o
 *.ko
