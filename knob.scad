@@ -1,11 +1,11 @@
-$fn=300;
+$fn=200;
 overshoot = 2;
 
-    mount_radius =  3.625;
+    mount_radius =  4;
     mount_depth  = 15;
-    slot_width  =  2;
+    slot_width  =  1.4;
     slot_depth  =  8;
-    cross_bar_length = 12; cross_bar_radius = 1; cross_bar_depth = 10.5;
+    cross_bar_length = 12; cross_bar_radius = 1.5; cross_bar_depth = 10.5;
     
     knob_skirt_outer = 64; knob_skirt_inner = 12; skirt_height = 12;
     knob_skirt_outer_depth = 3;
@@ -15,14 +15,18 @@ overshoot = 2;
     
     sleeve_radius = 9;
     sleeve_depth  = mount_depth + 4;
+    
+    key_size = 6;
 
 module mount() {
     difference() {
         cylinder(mount_depth+overshoot, r=mount_radius);
+        rotate([0,0,-45])
         translate([-(mount_radius + overshoot), -slot_width/2, -overshoot]) {
             cube([((mount_radius+overshoot) * 2), slot_width, slot_depth+overshoot]); 
         }
     }
+
     translate([0, cross_bar_length/2, cross_bar_depth]) 
         rotate([90, 0, 0]) {
             cylinder(cross_bar_length, r=cross_bar_radius);
@@ -67,9 +71,17 @@ module knob() {
     }
 }
 
+module key() {
+    translate([0,0,-4]) {
+        color("blue")
+        cube(key_size, center=true);
+    }
+}
+
 difference() {
     sleeve();
     mount();
+    key();
 }
 //translate([0, 0, mount_depth]) {
 //    knob();
