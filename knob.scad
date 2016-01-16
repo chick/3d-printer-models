@@ -1,4 +1,4 @@
-$fn=300;
+$fn=100;
 overshoot = 2;
 
     mount_radius =  3.625;
@@ -67,10 +67,10 @@ module knob() {
     }
 }
 
-difference() {
-    sleeve();
-    mount();
-}
-//translate([0, 0, mount_depth]) {
-//    knob();
+//difference() {
+//    sleeve();
+//    mount();
 //}
+translate([0, 0, mount_depth]) {
+    knob();
+}
